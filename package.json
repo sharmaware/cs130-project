@@ -1,0 +1,25 @@
+{
+  "name": "cs130-project",
+  "version": "1.0.0",
+  "description": "[![Build Status](https://app.travis-ci.com/melaasar/cs130-template.svg?branch=master)](https://app.travis-ci.com/github/melaasar/cs130-template) [![Release](https://img.shields.io/github/v/release/melaasar/cs130-template?label=release)](https://github.com/melaasar/cs130-template/releases/latest)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server/index.js"
+  },
+  
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/isabellegoralsky/cs130-project.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/isabellegoralsky/cs130-project/issues"
+  },
+  "homepage": "https://github.com/isabellegoralsky/cs130-project#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
