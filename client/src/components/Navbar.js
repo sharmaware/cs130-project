@@ -8,6 +8,8 @@ export default function Navbar() {
       </Link>
       <ul>
         <CustomLink to="/teams">Teams</CustomLink>
+        <CustomLink to="/login">Login</CustomLink>
+        <CustomLink to="/register">Register</CustomLink>
       </ul>
     </nav>
   )
