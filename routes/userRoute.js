@@ -4,6 +4,7 @@ const cookieParser = require('cookie-parser');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const User = require('../models/User');
+const Team = require('../models/Team');
 
 const maxAge = 30 * 24 * 60 * 60;
 const createToken = (id) => {
@@ -82,6 +83,239 @@ router.post("/logout", async (req, res) => {
        console.log("Could not log out")
        res.status(400).send(err);
    }
+});
+
+router.post("/addfriend", async (req, res) => {
+    const token = req.cookies.jwt;
+    const decoded = jwt.verify(token, process.env.TokenSecret);
+    var userId = decoded.id;
+    const user = await User.findOne({
+        _id: userId
+    });
+    if (!user) return res.status(400).send('User is not found.');
+    const friend = await User.findOne({
+        email: req.body.email
+    });
+    if (!friend) return res.status(400).send('Friend is not found.');
+    User.findOneAndUpdate({
+        _id: userId
+    }, {
+        $push: {
+            friends: friend.email
+        }
+    }, {
+        new: true
+    }, (err, doc) => {
+        if (err) {
+            console.log("Something went wrong");
+            res.status(400).send(err);
+        }
+    });
+    User.findOneAndUpdate({
+        email: friend.email
+    }, {
+        $push: {
+            friends: user.email
+        }
+    }, {
+        new: true
+    }, (err, doc) => {
+        if (err) {
+            console.log("Something went wrong");
+            res.status(400).send(err);
+        }
+    });
+    console.log("Successfully added friend.");
+    res.status(200).send("Successfully added friend.");
+});
+
+router.post("/deletefriend", async (req, res) => {
+    const token = req.cookies.jwt;
+    const decoded = jwt.verify(token, process.env.TokenSecret);
+    var userId = decoded.id;
+    const user = await User.findOne({
+        _id: userId
+    });
+    if (!user) return res.status(400).send('User is not found.');
+    const friend = await User.findOne({
+        email: req.body.email
+    });
+    if (!friend) return res.status(400).send('Friend is not found.');
+    User.findOneAndUpdate({
+        _id: userId
+    }, {
+        $pull: {
+            friends: friend.email
+        }
+    }, {
+        new: true
+    }, (err, doc) => {
+        if (err) {
+            console.log("Something went wrong");
+            res.status(400).send(err);
+        }
+    });
+    User.findOneAndUpdate({
+        email: friend.email
+    }, {
+        $pull: {
+            friends: user.email
+        }
+    }, {
+        new: true
+    }, (err, doc) => {
+        if (err) {
+            console.log("Something went wrong");
+            res.status(400).send(err);
+        }
+    });
+    res.status(200).send("Successfully removed friend.")
+});
+
+router.post("/createteam", async (req, res) => {
+    const token = req.cookies.jwt;
+    const decoded = jwt.verify(token, process.env.TokenSecret);
+    var userId = decoded.id;
+    const user = await User.findOne({
+        _id: userId
+    });
+    if (!user) return res.status(400).send('User is not found.');
+    const teamExists = await Team.findOne({
+        teamName: req.body.teamName
+    });
+    if (teamExists) return res.status(400).send('Team already exists');
+    const team = new Team({
+        teamName: req.body.teamName,
+        admin: [user.email],
+        teamMembers: [user.email]
+    });
+    try {
+        const saveTeam = await team.save();
+        User.findOneAndUpdate({
+            _id: userId
+        }, {
+            $push: {
+                teams: req.body.teamName
+            }
+        }, {
+            new: true
+        }, (err, doc) => {
+            if (err) {
+                console.log("Something went wrong");
+                res.status(400).send(err);
+            }
+        });
+        console.log("Successfully created team");
+        res.status(200).send("Successfully created team")
+    } catch (err) {
+        console.log("Failed to create team");
+        res.status(400).send(err);
+    }
+});
+
+router.post("/jointeam", async (req, res) => {
+    const token = req.cookies.jwt;
+    const decoded = jwt.verify(token, process.env.TokenSecret);
+    var userId = decoded.id;
+    const user = await User.findOne({
+        _id: userId
+    });
+    if (!user) return res.status(400).send('User is not found.');
+    const teamExists = await Team.findOne({
+        teamName: req.body.teamName
+    });
+    if (teamExists === false) return res.status(400).send('Team not found');
+    Team.findOneAndUpdate({
+        teamName: req.body.teamName
+    }, {
+        $push: {
+            teamMembers: user.email
+        }
+    }, {
+        new: true
+    }, (err, doc) => {
+        if (err) {
+            console.log("Something went wrong");
+            res.status(400).send(err);
+        }
+    });
+    User.findOneAndUpdate({
+        _id: userId
+    }, {
+        $push: {
+            teams: req.body.teamName
+        }
+    }, {
+        new: true
+    }, (err, doc) => {
+        if (err) {
+            console.log("Something went wrong");
+            res.status(400).send(err);
+        }
+    });
+    console.log("Successfully joined team.");
+    res.status(200).send("Successfully joined team.");
+});
+
+router.post("/leaveteam", async (req, res) => {
+    const token = req.cookies.jwt;
+    const decoded = jwt.verify(token, process.env.TokenSecret);
+    var userId = decoded.id;
+    const user = await User.findOne({
+        _id: userId
+    });
+    if (!user) return res.status(400).send('User is not found.');
+    const teamExists = await Team.findOne({
+        teamName: req.body.teamName
+    });
+    if (teamExists === false) return res.status(400).send('Team not found');
+    Team.findOneAndUpdate({
+        teamName: req.body.teamName
+    }, {
+        $pull: {
+            teamMembers: user.email,
+            admin: user.email
+        }
+    }, {
+        new: true
+    }, (err, doc) => {
+        if (err) {
+            console.log("Something went wrong");
+            res.status(400).send(err);
+        }
+    });
+    if(teamExists.admin.includes(user.email)){
+        Team.findOneAndUpdate({
+            teamName: req.body.teamName
+        }, {
+            $push: {
+                admin: teamExists.teamMembers[1]
+            }
+        }, {
+            new: true
+        }, (err, doc) => {
+            if (err) {
+                console.log("Something went wrong");
+                res.status(400).send(err);
+            }
+        });
+    }
+    User.findOneAndUpdate({
+        _id: userId
+    }, {
+        $pull: {
+            teams: req.body.teamName
+        }
+    }, {
+        new: true
+    }, (err, doc) => {
+        if (err) {
+            console.log("Something went wrong");
+            res.status(400).send(err);
+        }
+    });
+    console.log("Successfully left team.");
+    res.status(200).send("Successfully left team.");
 });
 
 module.exports = router;
