@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 
 const Carousel = ({ items, title }) => {
   return (
-    <div style={{ padding: '20px' }}>
-      <h2>{title}</h2>
+    <div style={{ padding: '20px 200px' }}>
+      <h2 class="teams-sections">{title}</h2>
       <div style={{
         display: 'flex',
         overflowX: 'auto',

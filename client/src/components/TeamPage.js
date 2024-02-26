@@ -1,9 +1,10 @@
 // TeamPage.js
 import React, { useState, useEffect } from 'react';
 import Carousel from './Carousel';
+import './Teams.css';
 
 const TeamPage = ({ teams, updates, achievements }) => {
-  const [selectedTeam, setSelectedTeam] = useState(teams.length > 0 ? teams[0] : null);
+  const [selectedTeam, setSelectedTeam] = useState(teams.length > 0 ? teams[0] : '');
 
   useEffect(() => {
     // Automatically select the first team when the component mounts
@@ -21,17 +22,21 @@ const TeamPage = ({ teams, updates, achievements }) => {
   return (
     <div className="team-page">
       <div className="team-selector">
-        <label htmlFor="team-dropdown">Select Team:</label>
+        <label htmlFor="team-dropdown" id="label-drop">Select Team</label>
         <select id="team-dropdown" onChange={handleTeamChange} value={selectedTeam?.id || ''}>
+          <option disabled={true} value="">
+            - Select a Team -
+          </option>
           {teams.map(team => (
             <option key={team.id} value={team.id}>{team.name}</option>
           ))}
         </select>
       </div>
-
-      <h1>{selectedTeam?.name}</h1>
-      <Carousel items={updates[selectedTeam?.id] || ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']} title="Updates" />
-      <Carousel items={achievements[selectedTeam?.id] || ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']} title="Achievements" />
+      <div>
+        <h1>{selectedTeam?.name}</h1>
+        <Carousel items={updates[selectedTeam?.id] || ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']} title="Updates" />
+        <Carousel items={achievements[selectedTeam?.id] || ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']} title="Achievements" />
+      </div>
     </div>
   );
 };
