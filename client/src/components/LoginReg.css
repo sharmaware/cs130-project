@@ -1,20 +1,20 @@
-#login-div {
+.login-div {
     font-family: "Nanum Gothic", sans-serif;
     font-weight: 400;
     font-style: normal;
-    margin:0 8.9%;
+    margin:120px 8.9% auto;
 }
 
-#welcomeback{
+.log-reg-title{
     font-size: 56px;
 }
 
-#button-div{
+.button-div{
     display: flex;
     justify-content: center;
 }
 
-#signin-button{
+.signin-button{
     border:0;
     background-color: #FF5A13;
     color: white;
@@ -41,8 +41,12 @@
     height:40px; /* need to extend width later when know dims*/
 }
 
-#password{
+.inputs-not-first{
     padding-top: 50px;
+}
+
+.inputs-not-first-reg{
+    padding-top: 25px;
 }
 
 .login-input:placeholder-shown{
@@ -60,4 +64,9 @@
 .login-divider{
     height: 3px;
     background-color: #FF5A13;
+}
+
+.reg-divider{
+    height: 3px;
+    background-color: #ebebeb;
 }
