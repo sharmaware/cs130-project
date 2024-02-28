@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './LoginReg.css'
 
 const LoginPage = () => {
   const [formData, setFormData] = useState({
@@ -18,18 +19,22 @@ const LoginPage = () => {
   };
 
   return (
-    <div>
-      <h1>Login</h1>
+    <div class="login-div">
+      <h1 class="bold-text log-reg-title">welcome back!</h1>
       <form onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="email">Email:</label>
-          <input id="email" type="email" name="email" value={formData.email} onChange={handleChange} />
+          <label class="login-label" htmlFor="email">Email</label>
+          <input placeholder="username / email" class="login-input" type="email" name="email" value={formData.email} onChange={handleChange} />
+          <div class="login-divider"></div>
         </div>
-        <div>
-          <label htmlFor="password">Password:</label>
-          <input id="password" type="password" name="password" value={formData.password} onChange={handleChange} />
+        <div class="inputs-not-first">
+          <label class="login-label" htmlFor="password">Password</label>
+          <input placeholder="password" class="login-input" type="password" name="password" value={formData.password} onChange={handleChange} />
+          <div class="login-divider"></div>
         </div>
-        <button type="submit">Login</button>
+        <div class="button-div">
+          <button type="submit" class="bold-text signin-button">sign in</button>
+        </div>
       </form>
     </div>
   );

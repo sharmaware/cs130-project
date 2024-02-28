@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './LoginReg.css';
 
 const RegisterPage = () => {
   const [formData, setFormData] = useState({
@@ -21,30 +22,37 @@ const RegisterPage = () => {
   };
 
   return (
-    <div>
-      <h1>Register Account</h1>
+    <div class="login-div">
+      <h1 class="bold-text log-reg-title">Register Account</h1>
       <form onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="firstname">First Name:</label>
-          <input id="firstname" name="firstname" value={formData.firstname} onChange={handleChange} />
+          <label class="login-label" htmlFor="firstname">First Name:</label>
+          <input placeholder="first name" class="login-input" id="firstname" name="firstname" value={formData.firstname} onChange={handleChange} />
+          <div class="reg-divider"></div>
         </div>
-        <div>
-          <label htmlFor="lastname">Last Name:</label>
-          <input id="lastname" name="lastname" value={formData.lastname} onChange={handleChange} />
+        <div class="inputs-not-first-reg">
+          <label class="login-label" htmlFor="lastname">Last Name:</label>
+          <input placeholder="last name" class="login-input" id="lastname" name="lastname" value={formData.lastname} onChange={handleChange} />
+          <div class="reg-divider"></div>
         </div>
-        <div>
-          <label htmlFor="email">Email:</label>
-          <input id="email" type="email" name="email" value={formData.email} onChange={handleChange} />
+        <div class="inputs-not-first-reg">
+          <label class="login-label" htmlFor="email">Email:</label>
+          <input placeholder="email address" class="login-input" id="email" type="email" name="email" value={formData.email} onChange={handleChange} />
+          <div class="reg-divider"></div>
         </div>
-        <div>
-          <label htmlFor="password">Password:</label>
-          <input id="password" type="password" name="password" value={formData.password} onChange={handleChange} />
+        <div class="inputs-not-first-reg">
+          <label class="login-label" htmlFor="password">Password:</label>
+          <input placeholder="create password" class="login-input" id="password" type="password" name="password" value={formData.password} onChange={handleChange} />
+          <div class="reg-divider"></div>
         </div>
-        <div>
-          <label htmlFor="verifypassword">Verify Password:</label>
-          <input id="verifypassword" type="password" name="verifypassword" value={formData.verifypassword} onChange={handleChange} />
+        <div class="inputs-not-first-reg">
+          <label class="login-label" htmlFor="verifypassword">Verify Password:</label>
+          <input placeholder="verify password" class="login-input" id="verifypassword" type="password" name="verifypassword" value={formData.verifypassword} onChange={handleChange} />
+          <div class="reg-divider"></div>
         </div>
-        <button type="submit">Register Account</button>
+        <div class="button-div">
+          <button class="bold-text signin-button" type="submit">sign up</button>
+        </div>
       </form>
     </div>
   );
