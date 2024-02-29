@@ -14,7 +14,16 @@ export default function ProfilePage() {
             .then(data => {
                 setUser(data);
             });
+        
+        //fetch myPals
+
+        //fetch pinnedWorkouts
+        //fetch personalRecords
     })
+
+    const saveNewWorkout = () => {
+
+    }
 
     return (
         <div>
@@ -28,7 +37,7 @@ export default function ProfilePage() {
                     Avatar Image Loading...
                 </Avatar.Fallback>
             </Avatar.Root>
-            <h1>{user.username}</h1>
+            <h1>{user.firstName + " " + user.lastName}</h1>
             <Tabs.Root className="TabsRoot" defaultValue="tab1">
                 <Tabs.List className="TabsList" aria-label="Profile Tabs">
                     <Tabs.Trigger className="TabsTrigger" value="tab1">
@@ -67,7 +76,7 @@ export default function ProfilePage() {
                                 </fieldset>
                                 <div style={{ display: 'flex', marginTop: 25, justifyContent: 'flex-end' }}>
                                     <Dialog.Close asChild>
-                                        <button className="Button green">Save changes</button>
+                                        <button className="Button green" onClick={saveNewWorkout}>Save</button>
                                     </Dialog.Close>
                                 </div>
                                 <Dialog.Close asChild>
