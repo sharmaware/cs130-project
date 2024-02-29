@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/isabellegoralsky/cs130-project#readme",
   "dependencies": {
+    "@radix-ui/react-tabs": "^1.0.4",
     "bcrypt": "^5.1.1",
     "cookie-parser": "^1.4.6",
     "dotenv": "^10.0.0",

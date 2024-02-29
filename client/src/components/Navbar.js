@@ -11,6 +11,7 @@ export default function Navbar() {
         <CustomLink to="/teams">Teams</CustomLink>
         <CustomLink to="/login">Login</CustomLink>
         <CustomLink to="/register">Register</CustomLink>
+        <CustomLink to="/profile">Profile</CustomLink>
       </div>
     </nav>
   )
