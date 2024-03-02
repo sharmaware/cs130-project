@@ -28,6 +28,21 @@ export default function ProfilePage() {
     const [pals, setPals] = useState(["Test Pal1", "Test Pal2", "Test Pal3"]);
     const [visibleExercises, setVisibleExercises] = useState(1);
     const [currPalName, setCurrPalName] = useState("");
+    const [workouts, setWorkouts] = useState([{
+        name: "Test Workout",
+        exercise1: {
+            name: "Deadlift",
+            sets: 3,
+            reps: 8,
+            notes: "Heavy"
+        },
+        exercise2: {
+            name: "Pullup",
+            sets: 4,
+            reps: 8,
+            notes: ""
+        },
+    }]);
     useEffect(() => {
 
         fetch('/api/user')
@@ -65,6 +80,7 @@ export default function ProfilePage() {
                 <Tabs.List className="TabsList" aria-label="Profile Tabs">
                     <Tabs.Trigger className="TabsTrigger" value="tab1">
                         Pinned Workouts
+                       
                     </Tabs.Trigger>
                     <Tabs.Trigger className="TabsTrigger" value="tab2">
                         Personal Records
@@ -87,6 +103,17 @@ export default function ProfilePage() {
                                 </Dialog.Close>
                             </Dialog.Content>
                         </Dialog.Portal>
+                        { workouts.map(workout => {
+                            return (
+                                <div style={{ border: '1px solid #000', padding: '10px', margin: '10px' }}>
+                                    <p>{workout.name}</p>
+                                        <p>{workout.exercise1.name} SETS {workout.exercise1.sets} REPS {workout.exercise1.reps} </p>
+                                            {workout.exercise1.notes !== "" && <p>Note: {workout.exercise1.notes}</p>}
+                                        <p>{workout.exercise2.name} SETS {workout.exercise2.sets} REPS {workout.exercise2.reps} </p>
+                                            {workout.exercise2.notes !== "" && <p>Note: {workout.exercise2.notes}</p>}
+                                </div>
+                            )
+                        })}
                     </Dialog.Root>
                 </Tabs.Content>
                 <Tabs.Content className="TabsContent" value="tab2">
@@ -163,17 +190,23 @@ const ExerciseInput = ({ exerciseList, exercise, setExercise }) => (
             value={exercise.reps}
             onChange={e => setExercise({ ...exercise, reps: e.target.value })}
         />
+        <input
+            className="Input"
+            placeholder="Notes"
+            value={exercise.notes}
+            onChange={e => setExercise({ ...exercise, notes: e.target.value })}
+        />
     </div>
 );
 
 
 const WorkoutModal = () => {
     const [workoutName, setWorkoutName] = useState('');
-    const [exercises, setExercises] = useState([{ name: '', sets: '', reps: '' }]);
+    const [exercises, setExercises] = useState([{ name: '', sets: '', reps: '', notes: 'f' }]);
 
     const addExercise = () => {
         if (exercises.length < 8) {
-            setExercises([...exercises, { name: '', sets: '', reps: '' }]);
+            setExercises([...exercises, { name: '', sets: '', reps: '', notes:'' }]);
         }
     };
 
@@ -189,11 +222,13 @@ const WorkoutModal = () => {
             exercises: exercises.map(exercise => ({
                 exerciseName: exercise.name || undefined,
                 reps: exercise.reps ? parseInt(exercise.reps, 10) : 0,
-                sets: exercise.sets ? parseInt(exercise.sets, 10) : 0
+                sets: exercise.sets ? parseInt(exercise.sets, 10) : 0,
+                notes: exercise.notes || undefined
             })).concat(Array(8 - exercises.length).fill({
                 exerciseName: undefined,
                 reps: 0,
-                sets: 0
+                sets: 0,
+                notes: ""
             }))
         };
         console.log(data);
