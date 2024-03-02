@@ -28,6 +28,8 @@ app.get("/api", (req, res) => {
 
 const userRoute = require('./routes/userRoute');
 app.use('/user', userRoute);
+const profileRoute = require('./routes/profileRoute');
+app.use('/profile', profileRoute);
 
 app.listen(PORT, () => {
     console.log(`Server listening on ${PORT}`);
