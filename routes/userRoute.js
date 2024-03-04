@@ -224,7 +224,7 @@ router.post("/jointeam", async (req, res) => {
     const teamExists = await Team.findOne({
         teamName: req.body.teamName
     });
-    if (teamExists === false) return res.status(400).send('Team not found');
+    if (teamExists === null) return res.status(400).send('Team not found');
     Team.findOneAndUpdate({
         teamName: req.body.teamName
     }, {
