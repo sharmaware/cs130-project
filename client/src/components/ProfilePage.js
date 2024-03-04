@@ -172,7 +172,7 @@ export default function ProfilePage() {
 }
 
 const ExerciseInput = ({ exerciseList, exercise, setExercise }) => (
-    <div style={{}}>
+    <div style={{ display: 'flex', marginTop: 10, marginBottom: 15, alignItems: 'flex-start'}}>
         <select
             className="Select"
             value={exercise.name}
@@ -184,24 +184,29 @@ const ExerciseInput = ({ exerciseList, exercise, setExercise }) => (
                 </option>
             ))}
         </select>
+        <div class="workout-deets">
         <input
             className="Input"
             placeholder="# Sets"
+            style={{marginBottom: 5}}
             value={exercise.sets}
             onChange={e => setExercise({ ...exercise, sets: e.target.value })}
         />
         <input
             className="Input"
             placeholder="# Reps"
+            style={{marginBottom: 5}}
             value={exercise.reps}
             onChange={e => setExercise({ ...exercise, reps: e.target.value })}
         />
         <input
             className="Input"
             placeholder="Notes"
+            style={{marginBottom: 5}}
             value={exercise.notes}
             onChange={e => setExercise({ ...exercise, notes: e.target.value })}
         />
+        </div>
     </div>
 );
 
@@ -257,15 +262,16 @@ const WorkoutModal = () => {
     };
 
     return (
-        <div style={{backgroundColor: '#c0c0c0'}}>
+        <div>
             {/* Component UI elements */}
             <fieldset className="Fieldset">
-                <label className="Label" htmlFor="workoutName">
+                <label className="Label" htmlFor="workoutName" style={{display: 'none'}}>
                     Workout Name
                 </label>
                 <input
                     className="Input"
                     id="workoutName"
+                    placeholder='Name your workout!'
                     value={workoutName}
                     onChange={(e) => setWorkoutName(e.target.value)}
                 />
@@ -278,11 +284,10 @@ const WorkoutModal = () => {
                     setExercise={(data) => setExerciseData(index, data)}
                 />
             ))}
-            <div style={{}}>
-                <button className="Button" onClick={addExercise}>+</button>
+            <div style={{ display: 'flex', marginTop: 15, justifyContent: 'flex-start' }}>
+                <button className="Button-add" onClick={addExercise}>add exercise</button>
             </div>
-            <div style={{}}>
-
+            <div style={{ display: 'flex', marginTop: 10, justifyContent: 'flex-end' }}>
                 <Dialog.Close asChild>
                     <button className="Button green" onClick={saveNewWorkout}>Save</button>
                 </Dialog.Close>
