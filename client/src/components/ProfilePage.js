@@ -99,10 +99,12 @@ export default function ProfilePage() {
                             </button>
                         </Dialog.Trigger>
                         <Dialog.Portal>
-                            <Dialog.Content className="DialogContent" class="adding">
-                                <Dialog.Title className="DialogTitle">Add workout</Dialog.Title>
-                                <WorkoutModal />
-                            </Dialog.Content>
+                            <Dialog.Overlay className="DialogOverlay" >
+                                <Dialog.Content className="DialogContent" class="adding">
+                                    <Dialog.Title className="DialogTitle">Add workout</Dialog.Title>
+                                    <WorkoutModal />
+                                </Dialog.Content>
+                            </Dialog.Overlay>
                         </Dialog.Portal>
                         { workouts.map(workout => {
                             return (
