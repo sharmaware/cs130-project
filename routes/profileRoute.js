@@ -144,4 +144,5 @@ router.post('/deletetemplate', async (req, res) => {
         res.status(200).send("Successfully deleted a template.");
     });
 });
+
 module.exports = router;
