@@ -1,5 +1,5 @@
 #profile-page{
-    margin: 7% 15.6% 15.6%;
+    margin: 7% 15.6% 14%;
     font-family: "Nanum Gothic", sans-serif;
     font-weight: 400;
     font-style: normal;
@@ -60,10 +60,6 @@
     margin: 0 16%;
 }
 
-#pal-names{
-    font-size: 30px;
-}
-
 /* pinned workouts */
 .pinned-workout{
     border: 0;
@@ -79,12 +75,21 @@
     margin-top: 3%;
 }
 
+.pinned-wo-name{
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 20px;
+}
+
 /* pals */
 
 #pals-content{
     display: flex;
     flex-direction: column;
     margin-top: 0;
+}
+
+#pal-names{
+    font-size: 30px;
 }
 
 .add-pals{
@@ -104,3 +109,23 @@
 .pals{
     margin: 14px 0px;
 }
+
+/* styles.css */
+.DialogOverlay {
+    background: rgba(0 0 0 / 0.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: grid;
+    place-items: center;
+    overflow-y: auto;
+  }
+  
+  .DialogContent {
+    min-width: 300px;
+    background: white;
+    padding: 30px;
+    border-radius: 4px;
+  }

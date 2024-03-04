@@ -99,18 +99,15 @@ export default function ProfilePage() {
                             </button>
                         </Dialog.Trigger>
                         <Dialog.Portal>
-                            <Dialog.Overlay className="DialogOverlay" />
                             <Dialog.Content className="DialogContent">
                                 <Dialog.Title className="DialogTitle">Add workout</Dialog.Title>
                                 <WorkoutModal />
-                                <Dialog.Close asChild>
-                                </Dialog.Close>
                             </Dialog.Content>
                         </Dialog.Portal>
                         { workouts.map(workout => {
                             return (
                                 <div class="pinned-workout">
-                                    <p>{workout.name}</p>
+                                    <p class="pinned-wo-name">{workout.name}</p>
                                         <p>{workout.exercise1.name} SETS {workout.exercise1.sets} REPS {workout.exercise1.reps} </p>
                                             {workout.exercise1.notes !== "" && <p>Note: {workout.exercise1.notes}</p>}
                                         <p>{workout.exercise2.name} SETS {workout.exercise2.sets} REPS {workout.exercise2.reps} </p>
@@ -170,7 +167,7 @@ export default function ProfilePage() {
 }
 
 const ExerciseInput = ({ exerciseList, exercise, setExercise }) => (
-    <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+    <div style={{}}>
         <select
             className="Select"
             value={exercise.name}
@@ -255,7 +252,7 @@ const WorkoutModal = () => {
     };
 
     return (
-        <div>
+        <div style={{backgroundColor: '#c0c0c0'}}>
             {/* Component UI elements */}
             <fieldset className="Fieldset">
                 <label className="Label" htmlFor="workoutName">
@@ -276,10 +273,10 @@ const WorkoutModal = () => {
                     setExercise={(data) => setExerciseData(index, data)}
                 />
             ))}
-            <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+            <div style={{}}>
                 <button className="Button" onClick={addExercise}>+</button>
             </div>
-            <div style={{ display: 'flex', marginTop: 25, justifyContent: 'flex-end' }}>
+            <div style={{}}>
 
                 <Dialog.Close asChild>
                     <button className="Button green" onClick={saveNewWorkout}>Save</button>
