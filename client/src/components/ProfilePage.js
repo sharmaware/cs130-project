@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react';
 import * as Tabs from '@radix-ui/react-tabs';
 import * as Avatar from '@radix-ui/react-avatar';
 import * as Dialog from '@radix-ui/react-dialog';
+import './ProfilePage.css';
+
 const exerciseList = [
     "Deadlift",
     "Squat",
@@ -64,18 +66,18 @@ export default function ProfilePage() {
     }
 
     return (
-        <div>
+        <div id="profile-page">
             <Avatar.Root className="AvatarRoot">
                 <Avatar.Image
                     className="AvatarImage"
-                    src="https://filestore.community.support.microsoft.com/api/images/8a86b79d-4e94-4c61-ace1-837ffd763978?upload=true"
+                    src="https://drive.google.com/thumbnail?id=1SQQgzP3d-hCNEA7p9nH4xhb9OO1TCC0G"
                     alt="Avatar Image"
                 />
                 <Avatar.Fallback className="AvatarFallback" delayMs={600}>
                     Avatar Image Loading...
                 </Avatar.Fallback>
             </Avatar.Root>
-            <h1>{user.firstName + " " + user.lastName}</h1>
+            <h1 id="profile-name">{user.firstName + " " + user.lastName}</h1>
             <Tabs.Root className="TabsRoot" defaultValue="tab1">
                 <Tabs.List className="TabsList" aria-label="Profile Tabs">
                     <Tabs.Trigger className="TabsTrigger" value="tab1">
@@ -89,24 +91,25 @@ export default function ProfilePage() {
                         My Pals
                     </Tabs.Trigger>
                 </Tabs.List>
-                <Tabs.Content className="TabsContent" value="tab1">
-                    <Dialog.Root>
+                <Tabs.Content className="TabsContent" id="workout-div" value="tab1">
+                    <Dialog.Root class="pals-div">
                         <Dialog.Trigger asChild>
-                            <button className="Button violet">Add workout</button>
+                            <button className="Button violet" class="add-pals">
+                                <img class="add-pal-img" src="https://drive.google.com/thumbnail?id=1EqwyGYxBns9dZixaFfKm549nYskLIMWw" alt="pin a workout"/>
+                            </button>
                         </Dialog.Trigger>
                         <Dialog.Portal>
-                            <Dialog.Overlay className="DialogOverlay" />
-                            <Dialog.Content className="DialogContent">
-                                <Dialog.Title className="DialogTitle">Add workout</Dialog.Title>
-                                <WorkoutModal />
-                                <Dialog.Close asChild>
-                                </Dialog.Close>
-                            </Dialog.Content>
+                            <Dialog.Overlay className="DialogOverlay" >
+                                <Dialog.Content className="DialogContent" class="adding">
+                                    <Dialog.Title className="DialogTitle">Add workout</Dialog.Title>
+                                    <WorkoutModal />
+                                </Dialog.Content>
+                            </Dialog.Overlay>
                         </Dialog.Portal>
                         { workouts.map(workout => {
                             return (
-                                <div style={{ border: '1px solid #000', padding: '10px', margin: '10px' }}>
-                                    <p>{workout.name}</p>
+                                <div class="pinned-workout">
+                                    <p class="pinned-wo-name">{workout.name}</p>
                                         <p>{workout.exercise1.name} SETS {workout.exercise1.sets} REPS {workout.exercise1.reps} </p>
                                             {workout.exercise1.notes !== "" && <p>Note: {workout.exercise1.notes}</p>}
                                         <p>{workout.exercise2.name} SETS {workout.exercise2.sets} REPS {workout.exercise2.reps} </p>
@@ -119,26 +122,26 @@ export default function ProfilePage() {
                 <Tabs.Content className="TabsContent" value="tab2">
                     <p>Personal Records</p>
                 </Tabs.Content>
-                <Tabs.Content className="TabsContent" value="tab3">
+                <Tabs.Content className="TabsContent" id="pals-content" value="tab3">
                     <Dialog.Root>
                         <Dialog.Trigger asChild>
-                            <button className="IconButton" aria-label="Update dimensions">
-                                Add Pal
+                            <button className="IconButton" class="add-pals" aria-label="Update dimensions">
+                                <img class="add-pal-img" src="https://drive.google.com/thumbnail?id=1EqwyGYxBns9dZixaFfKm549nYskLIMWw" alt="add a pal"/>
                             </button>
                         </Dialog.Trigger>
                         <Dialog.Portal>
-                            <Dialog.Content className="" sideOffset={5}>
-                                <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-                                    <p className="Text" style={{ marginBottom: 10 }}>
-                                        Add a Pal!
-                                    </p>
+                            <Dialog.Overlay className="DialogOverlay" >
+                            <Dialog.Content className="adding" sideOffset={5}>
+                                <div style={{ gap: 10 }}>
+                                <Dialog.Title className="DialogTitle">Add a pal!</Dialog.Title>
                                     <fieldset className="Fieldset">
-                                        <label className="Label" htmlFor="width">
+                                        <label className="Label" htmlFor="name">
                                             Name
                                         </label>
                                         <input
                                             className="Input"
-                                            placeholder="Pal Name"
+                                            placeholder="enter pal name..."
+                                            defaultValue="enter pal name..."
                                             value={currPalName}
                                             onChange={(e) => setCurrPalName(e.target.value)}
                                         />
@@ -146,16 +149,19 @@ export default function ProfilePage() {
 
 
                                 </div>
-                                <Dialog.Close asChild>
-                                    <button className="Button green" onClick={addPal}>Save</button>
-                                </Dialog.Close>
+                                <div style={{ display: 'flex', marginTop: 15, justifyContent: 'flex-end' }}>
+                                    <Dialog.Close asChild>
+                                        <button className="Button green" onClick={addPal}>Save</button>
+                                    </Dialog.Close>
+                                </div>
                             </Dialog.Content>
+                            </Dialog.Overlay>
                         </Dialog.Portal>
                     </Dialog.Root>
                     {pals.map(pal => {
                         return (
-                            <div>
-                                <p>{pal}</p>
+                            <div id="pal-names">
+                                <p class="pals">{pal}</p>
                             </div>
                         )
                     })}
@@ -166,7 +172,7 @@ export default function ProfilePage() {
 }
 
 const ExerciseInput = ({ exerciseList, exercise, setExercise }) => (
-    <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+    <div style={{ display: 'flex', marginTop: 10, marginBottom: 15, alignItems: 'flex-start'}}>
         <select
             className="Select"
             value={exercise.name}
@@ -178,24 +184,29 @@ const ExerciseInput = ({ exerciseList, exercise, setExercise }) => (
                 </option>
             ))}
         </select>
+        <div class="workout-deets">
         <input
             className="Input"
             placeholder="# Sets"
+            style={{marginBottom: 5}}
             value={exercise.sets}
             onChange={e => setExercise({ ...exercise, sets: e.target.value })}
         />
         <input
             className="Input"
             placeholder="# Reps"
+            style={{marginBottom: 5}}
             value={exercise.reps}
             onChange={e => setExercise({ ...exercise, reps: e.target.value })}
         />
         <input
             className="Input"
             placeholder="Notes"
+            style={{marginBottom: 5}}
             value={exercise.notes}
             onChange={e => setExercise({ ...exercise, notes: e.target.value })}
         />
+        </div>
     </div>
 );
 
@@ -254,12 +265,13 @@ const WorkoutModal = () => {
         <div>
             {/* Component UI elements */}
             <fieldset className="Fieldset">
-                <label className="Label" htmlFor="workoutName">
+                <label className="Label" htmlFor="workoutName" style={{display: 'none'}}>
                     Workout Name
                 </label>
                 <input
                     className="Input"
                     id="workoutName"
+                    placeholder='Name your workout!'
                     value={workoutName}
                     onChange={(e) => setWorkoutName(e.target.value)}
                 />
@@ -272,11 +284,10 @@ const WorkoutModal = () => {
                     setExercise={(data) => setExerciseData(index, data)}
                 />
             ))}
-            <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                <button className="Button" onClick={addExercise}>+</button>
+            <div style={{ display: 'flex', marginTop: 15, justifyContent: 'flex-start' }}>
+                <button className="Button-add" onClick={addExercise}>add exercise</button>
             </div>
-            <div style={{ display: 'flex', marginTop: 25, justifyContent: 'flex-end' }}>
-
+            <div style={{ display: 'flex', marginTop: 10, justifyContent: 'flex-end' }}>
                 <Dialog.Close asChild>
                     <button className="Button green" onClick={saveNewWorkout}>Save</button>
                 </Dialog.Close>

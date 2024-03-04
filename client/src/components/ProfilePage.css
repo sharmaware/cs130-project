@@ -1,0 +1,278 @@
+#profile-page{
+    margin: 7% 15.6% 14%;
+    font-family: "Nanum Gothic", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+/* Profile Picture */
+
+.AvatarImage{
+    border-radius: 50%;
+}
+
+.AvatarRoot{
+    display: flex;
+    justify-content: center;
+}
+
+/* Name */
+
+#profile-name{
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 45px;
+}
+
+/* Tabs */
+
+.TabsList{
+    margin-top: 5%;
+    margin-left: 12%;
+    margin-right: 12%;
+    display: flex;
+    justify-content: space-evenly;
+    /*box-shadow: 0px 4px 4px rgba(0,0,0,.25);*/
+    border-bottom: 1px solid #dddddd;
+}
+
+.TabsTrigger{
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 22px;
+    border: 0;
+    background-color: white;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width:33.3%;
+    color: #c0c0c0;
+}
+
+.TabsTrigger:hover {
+    color: #FF5A13;
+}
+.TabsTrigger[data-state='active'] {
+    color: #FF5A13;
+    box-shadow: inset 0 -1px 0 0 currentColor, 0 1px 0 0 currentColor;
+  }
+
+.TabsContent{
+    margin: 0 16%;
+}
+
+/* pinned workouts */
+.pinned-workout{
+    border: 0;
+    padding: 10px 40px;
+    margin: 20px 10px;
+    background-color: rgb(255, 90, 19, .12);
+    border-radius: 60px;
+}
+
+#workout-div{
+    display: flex;
+    flex-direction: column;
+    margin-top: 3%;
+}
+
+.pinned-wo-name{
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 20px;
+}
+
+/* pals */
+
+#pals-content{
+    display: flex;
+    flex-direction: column;
+    margin-top: 0;
+}
+
+#pal-names{
+    font-size: 30px;
+}
+
+.add-pals{
+    border:0;
+    background-color: white;
+    color: white;
+    float: right;
+    font-size: 25px;
+}
+
+.add-pal-img{
+    float: right;
+    width: 38px;
+    height: 38px;
+}
+
+.pals{
+    margin: 14px 0px;
+}
+
+  
+.adding {
+    margin: 0 15.6%;
+    background: white;
+    padding: 30px;
+    border-radius: 4px;
+}
+
+/*  Add pals  */
+
+.DialogOverlay {
+    background: rgba(0 0 0 / 0.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: grid;
+    place-items: center;
+    overflow-y: auto;
+  }
+  
+  .DialogContent {
+    font-family: "Nanum Gothic", sans-serif;
+    background-color: white;
+    border-radius: 6px;
+    box-shadow: hsl(206 22% 7% / 35%) 0px 10px 38px -10px, hsl(206 22% 7% / 20%) 0px 10px 20px -15px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90vw;
+    max-width: 450px;
+    max-height: 85vh;
+    padding: 25px;
+    animation: contentShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  DialogContent:focus {
+    outline: none;
+  }
+
+  .DialogTitle {
+    font-family: "Bebas Neue", sans-serif;
+    margin: 0 0 10px 0;
+    font-weight: 500;
+    color: #FF5A13;
+    font-size: 25px;
+  }
+
+  .Fieldset {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    margin-bottom: 15px;
+    border: 0;
+  }
+
+  .Label {
+    font-size: 15px;
+    color: black;
+    width: 90px;
+    text-align: right;
+  }
+
+  .Input {
+    flex: 1 0 auto;
+    border-radius: 4px;
+    padding: 0 10px;
+    font-size: 15px;
+    line-height: 1;
+    color: black;
+    box-shadow: 0 0 0 1px #FF5A13;
+    height: 35px;
+    border:0;
+  }
+
+  .Input:focus {
+    box-shadow: 0 0 0 2px #FF5A13;
+    border: 0;
+    outline: none !important;
+  }
+
+  .Button {
+    display: inline-flex;
+    box-shadow: 0 0 0 2px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    border:0;
+    padding: 0 15px;
+    font-size: 20px;
+    line-height: 1;
+    font-weight: 500;
+    height: 35px;
+  }
+  .Button.green {
+    font-family: "Bebas Neue", sans-serif;
+    background-color: rgb(255, 90, 19, 1);
+    color: white;
+  }
+  .Button.green:hover {
+    background-color: rgb(255, 90, 19, .5);
+  }
+  .Button.green:focus {
+    box-shadow: 0 0 0 2px #FF5A13;
+  }
+
+  @keyframes overlayShow {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes contentShow {
+    from {
+      opacity: 0;
+      transform: translate(-50%, -48%) scale(0.96);
+    }
+    to {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+  }
+  
+
+  /*  Add pinned workout  */
+
+  .Select{
+    font-family: "Bebas Neue", sans-serif;
+    border:0;
+    background-color: rgb(255, 90, 19, .1);
+    border-radius: 6px;
+    padding: 8px;
+    margin-right: 10px;
+    font-size: 20px;
+    color:#FF5A13;
+  }
+
+  .workout-deets{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .Button-add {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    border: 0;
+    padding: 8px 15px;
+    font-size: 20px;
+    line-height: 1;
+    font-weight: 500;
+    height:42px;
+    font-family: "Bebas Neue", sans-serif;
+    background-color: rgb(255, 90, 19, .1);
+    color:#FF5A13;
+  }
+
+  .Button-add:hover {
+    background-color: rgb(255, 90, 19, .3);
+  }
