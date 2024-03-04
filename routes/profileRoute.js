@@ -32,7 +32,7 @@ router.post('/addtemplate', async (req, res) => {
             console.log("Successfully created template.");
         } catch (err) {
             console.log("Failed to create template.");
-            res.status(400).send(err);
+            return res.status(400).send(err);
         }
     }
     else {
@@ -41,13 +41,12 @@ router.post('/addtemplate', async (req, res) => {
             return res.status(400).send("Already have this template.");
         }
     }
-    var array=req.body.workoutArray;
     Template.findOneAndUpdate({
         userId: userId
     }, {
         $push: {
-            workoutName: req.body.templateName,
-            exercises: array,
+            workoutName: req.body.workoutName,
+            exercises: req.body.exercises,
             note: req.body.note
         }
     }, {
@@ -71,7 +70,34 @@ router.post('/edittemplate', async (req, res) => {
     const templateExists = await Template.findOne({
         userId: userId
     });
-    //var index = ;
+    if (templateExists === null){
+        return res.status(400).send("Template does not exist.");
+    }
+    var index = templateExists.workoutName.indexOf(req.body.workoutName);
+    if(index===-1){
+        return res.status(400).send("Workout does not exist.");
+    }
+    templateExists.exercises[index] = req.body.exercises;
+    templateExists.note[index] = req.body.note;
+    Template.replaceOne({
+        userId: userId
+    }, {
+        userId: userId,
+        workoutName: templateExists.workoutName,
+        exercises: templateExists.exercises,
+        note: templateExists.note
+    }, {
+        new: true
+    }, (err, doc) => {
+        if (err) {
+            console.log("Something went wrong");
+            console.log(err);
+        }
+        else{
+            console.log("Edited a template");
+        }
+        res.status(200).send("Successfully edited a template.");
+    });
 });
 
 router.post('/deletetemplate', async (req, res) => {
@@ -81,6 +107,37 @@ router.post('/deletetemplate', async (req, res) => {
     const templateExists = await Template.findOne({
         userId: userId
     });
-    //var index = ;
+    if (templateExists === null){
+        return res.status(400).send("Template does not exist.");
+    }
+    var index = templateExists.workoutName.indexOf(req.body.workoutName);
+    if(index===-1){
+        return res.status(400).send("Workout does not exist.");
+    }
+    var workoutName = templateExists.workoutName;
+    var exercises = templateExists.exercises;
+    var note = templateExists.note;
+    workoutName.splice(index, 1);
+    exercises.splice(index, 1);
+    note.splice(index, 1);
+    Template.replaceOne({
+        userId: userId
+    }, {
+        userId: userId,
+        workoutName: workoutName,
+        exercises: exercises,
+        note: note
+    }, {
+        new: true
+    }, (err, doc) => {
+        if (err) {
+            console.log("Something went wrong");
+            console.log(err);
+        }
+        else{
+            console.log("Deleted a template");
+        }
+        res.status(200).send("Successfully deleted a template.");
+    });
 });
 module.exports = router;
