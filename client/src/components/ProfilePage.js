@@ -128,6 +128,7 @@ export default function ProfilePage() {
                             </button>
                         </Dialog.Trigger>
                         <Dialog.Portal>
+                            <Dialog.Overlay className="DialogOverlay" >
                             <Dialog.Content className="adding" sideOffset={5}>
                                 <div style={{ gap: 10 }}>
                                     <p className="Text" style={{ marginBottom: 10 }}>
@@ -151,6 +152,7 @@ export default function ProfilePage() {
                                     <button className="Button green" onClick={addPal}>Save</button>
                                 </Dialog.Close>
                             </Dialog.Content>
+                            </Dialog.Overlay>
                         </Dialog.Portal>
                     </Dialog.Root>
                     {pals.map(pal => {
