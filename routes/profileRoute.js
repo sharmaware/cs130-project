@@ -37,7 +37,7 @@ router.post('/addtemplate', async (req, res) => {
     }
     else {
         const templates = templateExists.workoutName;
-        if(templates.includes(req.body.templateName)){
+        if(templates.includes(req.body.workoutName)){
             return res.status(400).send("Already have this template.");
         }
     }
@@ -77,8 +77,12 @@ router.post('/edittemplate', async (req, res) => {
     if(index===-1){
         return res.status(400).send("Workout does not exist.");
     }
-    templateExists.exercises[index] = req.body.exercises;
-    templateExists.note[index] = req.body.note;
+    if(req.body.exercises != undefined){
+        templateExists.exercises[index] = req.body.exercises;
+    }
+    if(req.body.note != undefined){
+        templateExists.note[index] = req.body.note;
+    }
     Template.replaceOne({
         userId: userId
     }, {
