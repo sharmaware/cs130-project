@@ -99,7 +99,7 @@ export default function ProfilePage() {
                             </button>
                         </Dialog.Trigger>
                         <Dialog.Portal>
-                            <Dialog.Content className="DialogContent">
+                            <Dialog.Content className="DialogContent" class="adding">
                                 <Dialog.Title className="DialogTitle">Add workout</Dialog.Title>
                                 <WorkoutModal />
                             </Dialog.Content>
@@ -128,7 +128,7 @@ export default function ProfilePage() {
                             </button>
                         </Dialog.Trigger>
                         <Dialog.Portal>
-                            <Dialog.Content className="" sideOffset={5}>
+                            <Dialog.Content className="adding" sideOffset={5}>
                                 <div style={{ gap: 10 }}>
                                     <p className="Text" style={{ marginBottom: 10 }}>
                                         Add a Pal!
