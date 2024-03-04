@@ -133,16 +133,15 @@ export default function ProfilePage() {
                             <Dialog.Overlay className="DialogOverlay" >
                             <Dialog.Content className="adding" sideOffset={5}>
                                 <div style={{ gap: 10 }}>
-                                    <p className="Text" style={{ marginBottom: 10 }}>
-                                        Add a Pal!
-                                    </p>
+                                <Dialog.Title className="DialogTitle">Add a pal!</Dialog.Title>
                                     <fieldset className="Fieldset">
-                                        <label className="Label" htmlFor="width">
+                                        <label className="Label" htmlFor="name">
                                             Name
                                         </label>
                                         <input
                                             className="Input"
-                                            placeholder="Pal Name"
+                                            placeholder="enter pal name..."
+                                            defaultValue="enter pal name..."
                                             value={currPalName}
                                             onChange={(e) => setCurrPalName(e.target.value)}
                                         />
@@ -150,9 +149,11 @@ export default function ProfilePage() {
 
 
                                 </div>
-                                <Dialog.Close asChild>
-                                    <button className="Button green" onClick={addPal}>Save</button>
-                                </Dialog.Close>
+                                <div style={{ display: 'flex', marginTop: 15, justifyContent: 'flex-end' }}>
+                                    <Dialog.Close asChild>
+                                        <button className="Button green" onClick={addPal}>Save</button>
+                                    </Dialog.Close>
+                                </div>
                             </Dialog.Content>
                             </Dialog.Overlay>
                         </Dialog.Portal>
