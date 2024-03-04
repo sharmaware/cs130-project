@@ -5,6 +5,7 @@ import HomePage from "./components/HomePage"
 import LoginPage from "./components/LoginPage"
 import RegisterPage from "./components/RegisterPage"
 import ProfilePage from "./components/ProfilePage"
+import Footer from "./components/Footer"
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
           <Route path="/profile"f element={<ProfilePage/>}/>
         </Routes>
       </div>
+      <Footer />
     </Router>
   )
 }

@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react';
 import * as Tabs from '@radix-ui/react-tabs';
 import * as Avatar from '@radix-ui/react-avatar';
 import * as Dialog from '@radix-ui/react-dialog';
+import './ProfilePage.css';
+
 const exerciseList = [
     "Deadlift",
     "Squat",
@@ -64,18 +66,18 @@ export default function ProfilePage() {
     }
 
     return (
-        <div>
+        <div id="profile-page">
             <Avatar.Root className="AvatarRoot">
                 <Avatar.Image
                     className="AvatarImage"
-                    src="https://filestore.community.support.microsoft.com/api/images/8a86b79d-4e94-4c61-ace1-837ffd763978?upload=true"
+                    src="https://drive.google.com/thumbnail?id=1SQQgzP3d-hCNEA7p9nH4xhb9OO1TCC0G"
                     alt="Avatar Image"
                 />
                 <Avatar.Fallback className="AvatarFallback" delayMs={600}>
                     Avatar Image Loading...
                 </Avatar.Fallback>
             </Avatar.Root>
-            <h1>{user.firstName + " " + user.lastName}</h1>
+            <h1 id="profile-name">{user.firstName + " " + user.lastName}</h1>
             <Tabs.Root className="TabsRoot" defaultValue="tab1">
                 <Tabs.List className="TabsList" aria-label="Profile Tabs">
                     <Tabs.Trigger className="TabsTrigger" value="tab1">
@@ -89,10 +91,12 @@ export default function ProfilePage() {
                         My Pals
                     </Tabs.Trigger>
                 </Tabs.List>
-                <Tabs.Content className="TabsContent" value="tab1">
-                    <Dialog.Root>
+                <Tabs.Content className="TabsContent" id="workout-div" value="tab1">
+                    <Dialog.Root class="pals-div">
                         <Dialog.Trigger asChild>
-                            <button className="Button violet">Add workout</button>
+                            <button className="Button violet" class="add-pals">
+                                <img class="add-pal-img" src="https://drive.google.com/thumbnail?id=1EqwyGYxBns9dZixaFfKm549nYskLIMWw" alt="pin a workout"/>
+                            </button>
                         </Dialog.Trigger>
                         <Dialog.Portal>
                             <Dialog.Overlay className="DialogOverlay" />
@@ -105,7 +109,7 @@ export default function ProfilePage() {
                         </Dialog.Portal>
                         { workouts.map(workout => {
                             return (
-                                <div style={{ border: '1px solid #000', padding: '10px', margin: '10px' }}>
+                                <div class="pinned-workout">
                                     <p>{workout.name}</p>
                                         <p>{workout.exercise1.name} SETS {workout.exercise1.sets} REPS {workout.exercise1.reps} </p>
                                             {workout.exercise1.notes !== "" && <p>Note: {workout.exercise1.notes}</p>}
@@ -119,16 +123,16 @@ export default function ProfilePage() {
                 <Tabs.Content className="TabsContent" value="tab2">
                     <p>Personal Records</p>
                 </Tabs.Content>
-                <Tabs.Content className="TabsContent" value="tab3">
+                <Tabs.Content className="TabsContent" id="pals-content" value="tab3">
                     <Dialog.Root>
                         <Dialog.Trigger asChild>
-                            <button className="IconButton" aria-label="Update dimensions">
-                                Add Pal
+                            <button className="IconButton" class="add-pals" aria-label="Update dimensions">
+                                <img class="add-pal-img" src="https://drive.google.com/thumbnail?id=1EqwyGYxBns9dZixaFfKm549nYskLIMWw" alt="add a pal"/>
                             </button>
                         </Dialog.Trigger>
                         <Dialog.Portal>
                             <Dialog.Content className="" sideOffset={5}>
-                                <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+                                <div style={{ gap: 10 }}>
                                     <p className="Text" style={{ marginBottom: 10 }}>
                                         Add a Pal!
                                     </p>
@@ -154,8 +158,8 @@ export default function ProfilePage() {
                     </Dialog.Root>
                     {pals.map(pal => {
                         return (
-                            <div>
-                                <p>{pal}</p>
+                            <div id="pal-names">
+                                <p class="pals">{pal}</p>
                             </div>
                         )
                     })}

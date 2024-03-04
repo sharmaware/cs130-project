@@ -1,0 +1,106 @@
+#profile-page{
+    margin: 7% 15.6% 15.6%;
+    font-family: "Nanum Gothic", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+/* Profile Picture */
+
+.AvatarImage{
+    border-radius: 50%;
+}
+
+.AvatarRoot{
+    display: flex;
+    justify-content: center;
+}
+
+/* Name */
+
+#profile-name{
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 45px;
+}
+
+/* Tabs */
+
+.TabsList{
+    margin-top: 5%;
+    margin-left: 12%;
+    margin-right: 12%;
+    display: flex;
+    justify-content: space-evenly;
+    /*box-shadow: 0px 4px 4px rgba(0,0,0,.25);*/
+    border-bottom: 1px solid #dddddd;
+}
+
+.TabsTrigger{
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 22px;
+    border: 0;
+    background-color: white;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width:33.3%;
+    color: #c0c0c0;
+}
+
+.TabsTrigger:hover {
+    color: #FF5A13;
+}
+.TabsTrigger[data-state='active'] {
+    color: #FF5A13;
+    box-shadow: inset 0 -1px 0 0 currentColor, 0 1px 0 0 currentColor;
+  }
+
+.TabsContent{
+    margin: 0 16%;
+}
+
+#pal-names{
+    font-size: 30px;
+}
+
+/* pinned workouts */
+.pinned-workout{
+    border: 0;
+    padding: 10px 40px;
+    margin: 20px 10px;
+    background-color: rgb(255, 90, 19, .12);
+    border-radius: 60px;
+}
+
+#workout-div{
+    display: flex;
+    flex-direction: column;
+    margin-top: 3%;
+}
+
+/* pals */
+
+#pals-content{
+    display: flex;
+    flex-direction: column;
+    margin-top: 0;
+}
+
+.add-pals{
+    border:0;
+    background-color: white;
+    color: white;
+    float: right;
+    font-size: 25px;
+}
+
+.add-pal-img{
+    float: right;
+    width: 38px;
+    height: 38px;
+}
+
+.pals{
+    margin: 14px 0px;
+}
