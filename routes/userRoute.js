@@ -36,7 +36,7 @@ router.post("/register", async (req, res) => {
            maxAge: maxAge
        });
        console.log("Successfully registered");
-       res.status(200).send("Successfully registered")
+       res.status(200).send("Successfully registered");
    } catch (err) {
        console.log("Failed to register");
        res.status(400).send(err);
