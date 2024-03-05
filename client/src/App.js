@@ -6,7 +6,7 @@ import LoginPage from "./components/LoginPage"
 import RegisterPage from "./components/RegisterPage"
 import ProfilePage from "./components/ProfilePage"
 import GoalsPage from "./components/GoalsPage"
-
+import Footer from "./components/Footer"
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 
 function App() {
@@ -23,6 +23,7 @@ function App() {
           <Route path="/goals" element={<GoalsPage/>}/>
         </Routes>
       </div>
+      <Footer />
     </Router>
   )
 }

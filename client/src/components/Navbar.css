@@ -6,3 +6,13 @@
     display: flex;
 }
 
+/* footer */
+
+#footer{
+    height: 200px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #FF5A13;
+    color:white;
+}
