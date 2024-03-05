@@ -10,7 +10,7 @@ export default function Navbar() {
       <div id="nav-links">
         <CustomLink to="/teams">Teams</CustomLink>
         <CustomLink to="/login">Login</CustomLink>
-        <CustomLink to="/register">Register</CustomLink>
+        <CustomLink to="/goals">Goals</CustomLink>
         <CustomLink to="/profile">Profile</CustomLink>
       </div>
     </nav>
