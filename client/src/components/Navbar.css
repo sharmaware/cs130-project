@@ -1,6 +1,6 @@
 .nav{
     display: flex;
-    height: 90px;
+    height: 80px;
     background-color: #FF5A13;
     box-shadow: 0px 4px 4px rgba(6, 2, 0, 0.25);
     overflow:hidden;
@@ -16,11 +16,13 @@
 /* footer */
 
 #footer{
-    height: 80px;
+    height: 50px;
+    max-height:50px;
     display:flex;
     justify-content: center;
     align-items: center;
     border-top: 1px solid #ff5a1383;
     color: #ff5a13;
     font-weight: bold;
+    bottom: 0;
 }
