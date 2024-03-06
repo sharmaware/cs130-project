@@ -35,7 +35,9 @@ const GoalsPage = () => {
             <div>
                 <Dialog.Root>
                     <Dialog.Trigger asChild>
-                        <span classname="ClickableText">add another goal?</span>
+                        <div id="another-goal">
+                            <span classname="ClickableText">add another goal?</span>
+                        </div>
                     </Dialog.Trigger>
                     <Dialog.Portal>
                         <Dialog.Overlay className="DialogOverlay" />
