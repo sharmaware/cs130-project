@@ -13,23 +13,13 @@ const Goal = ({ description, savedprogress, goalvalue }) => {
     }, [savedprogress, goalvalue]);
 
     return (
-        <div style={{
-            display: 'flex',
-            width: '300px',
-            minHeight: '100px',
-            padding: '20px',
-            alignItems: 'center',
-            justifyContent: 'center',
-            background: '#eee',
-            borderRadius: '15px',
-            margin: '10px'
-        }}>
+        <div class="indiv-goal">
             <div>
-                <p> {description} </p>
+                <p class="goal-d"> {description} </p>
                 <Progress.Root className="ProgressRoot" value={progress}>
                     <Progress.Indicator className="ProgressIndicator" style={{ transform: `translateX(-${100 - progress}%)` }} />
                 </Progress.Root>
-                <p> {savedprogress} / {goalvalue} </p>
+                <p class="goal-prog"> {savedprogress} / {goalvalue} </p>
             </div>
         </div>
     );
