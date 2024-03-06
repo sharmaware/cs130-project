@@ -36,7 +36,7 @@ const LoginPage = () => {
         <div class="button-div">
           <button type="submit" class="bold-text signin-button">sign in</button>
         </div>
-        <p>New Here? <Link to="/register">Sign Up</Link></p>
+        <div id="login-reg-link">New Here?&nbsp;<Link to="/register" id="sign-up-link">Sign Up</Link></div>
       </form>
     </div>
   );

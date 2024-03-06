@@ -17,23 +17,27 @@ const GoalsPage = () => {
 
     return (
         <div className="goals-page">
-            <h2>MY GOALS</h2>
-            <div className="column">
-                <h2>PERSONAL RECORD</h2>
-                {samplegoals.map((goal, index) => (
-                    <Goal key={index} description={goal.description} savedprogress={goal.savedprogress} goalvalue={100} />
-                ))}
-            </div>
-            <div className="column">
-                <h2>CONSISTENCY</h2>
-                {samplegoals.map((goal, index) => (
-                    <Goal key={index} description={goal.description} savedprogress={goal.savedprogress} goalvalue={100} />
-                ))}
+            <h2 id="my-goals">MY GOALS</h2>
+            <div id="goals-div">
+                <div className="column">
+                    <h2 class="goal-header">PERSONAL RECORD</h2>
+                    {samplegoals.map((goal, index) => (
+                        <Goal key={index} description={goal.description} savedprogress={goal.savedprogress} goalvalue={100} />
+                    ))}
+                </div>
+                <div className="column">
+                    <h2 class="goal-header">CONSISTENCY</h2>
+                    {samplegoals.map((goal, index) => (
+                        <Goal key={index} description={goal.description} savedprogress={goal.savedprogress} goalvalue={100} />
+                    ))}
+                </div>
             </div>
             <div>
                 <Dialog.Root>
                     <Dialog.Trigger asChild>
-                        <span classname="ClickableText">add another goal?</span>
+                        <div id="another-goal">
+                            <span classname="ClickableText">add another goal?</span>
+                        </div>
                     </Dialog.Trigger>
                     <Dialog.Portal>
                         <Dialog.Overlay className="DialogOverlay" />
