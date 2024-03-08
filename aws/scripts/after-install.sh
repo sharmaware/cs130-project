@@ -1,6 +1,6 @@
 #!/bin/bash
 set -xe
-exit 255
+
 cd /usr/local/client
 # Check if node is installed
 if ! command -v node &> /dev/null; then
@@ -26,7 +26,7 @@ fi
 # Copy client code from S3 bucket to local client folder
 #need to change because this may cause issues if filenames change or files are deleted
 #should delete folder in s3 before copying in github action
-aws s3 cp s3://codedeploystack-webappdeploymentbucket-5rbk4ls1a5r8 /usr/local/client
+aws s3 cp s3://codedeploystack-webappdeploymentbucket-frd7wfauafji
 
 # Ensure the ownership permissions are correct.
 # chown -R tomcat:tomcat /usr/local/tomcat9/webapps
