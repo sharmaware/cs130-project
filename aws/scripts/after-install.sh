@@ -13,7 +13,12 @@ if ! command -v node &> /dev/null; then
     fi
     # Install Node.js version 20 using nvm
     nvm install 20
-    echo "Node.js version 20 installed successfully."
+    if ! command -v node &> /dev/null; then
+        echo "node install failed"
+        exit 255
+    else
+        echo "Node.js version 20 installed successfully."
+    fi
 else
     echo "Node.js is already installed."
 fi
