@@ -1,10 +1,25 @@
 #!/bin/bash
 set -xe
 
+cd /usr/local/client
+# Check if node is installed
+if ! command -v node &> /dev/null; then
+    echo "Node.js is not installed. Installing Node.js version 20..."
+    # Install nvm if not already installed
+    if ! command -v nvm &> /dev/null; then
+        curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+        # You might need to restart your terminal session after installing nvm
+        source ~/.bashrc  # or source ~/.bash_profile or source ~/.zshrc depending on your shell
+    fi
+    # Install Node.js version 20 using nvm
+    nvm install 20
+    echo "Node.js version 20 installed successfully."
+else
+    echo "Node.js is already installed."
+fi
 
-# Copy war file from S3 bucket to tomcat webapp folder
-aws s3 cp s3://codedeploystack-webappdeploymentbucket-mo8icv2cwaaq/SpringBootHelloWorldExampleApplication.war /usr/local/tomcat9/webapps/SpringBootHelloWorldExampleApplication.war
-
+# Copy client code from S3 bucket to local client folder
+aws s3 cp s3://codedeploystack-webappdeploymentbucket-mo8icv2cwaaq /usr/local/client
 
 # Ensure the ownership permissions are correct.
-chown -R tomcat:tomcat /usr/local/tomcat9/webapps
+# chown -R tomcat:tomcat /usr/local/tomcat9/webapps

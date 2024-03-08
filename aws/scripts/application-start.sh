@@ -2,4 +2,6 @@
 set -xe
 
 # Start Tomcat, the application server.
-service tomcat start
+cd /usr/local/client
+npm i
+npm start

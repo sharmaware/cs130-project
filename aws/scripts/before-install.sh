@@ -7,3 +7,9 @@ if [ -d /usr/local/codedeployresources ]; then
 fi
 
 mkdir -vp /usr/local/codedeployresources
+
+if [ -d /usr/local/client ]; then
+    rm -rf /usr/local/client/
+fi
+
+mkdir -vp /usr/local/client
