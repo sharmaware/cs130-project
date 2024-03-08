@@ -24,4 +24,4 @@ else
     echo "Node.js is already installed."
 fi
 npm i
-npm start
+npm start &
