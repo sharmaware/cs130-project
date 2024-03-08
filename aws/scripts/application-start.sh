@@ -13,12 +13,12 @@ if ! command -v node &> /dev/null; then
         source ~/.bashrc  # or source ~/.bash_profile or source ~/.zshrc depending on your shell
     fi
     # Install Node.js version 20 using nvm
-    nvm install 20
+    nvm install 16
     if ! command -v node &> /dev/null; then
         echo "node install failed"
         exit 255
     else
-        echo "Node.js version 20 installed successfully."
+        echo "Node.js version 16 installed successfully."
     fi
 else
     echo "Node.js is already installed."
