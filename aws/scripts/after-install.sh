@@ -1,6 +1,6 @@
 #!/bin/bash
 set -xe
-
+exit 255
 cd /usr/local/client
 # Check if node is installed
 if ! command -v node &> /dev/null; then
