@@ -26,19 +26,6 @@ jobs:
           role-session-name: GitHub-Action-Role
           aws-region: ${{ env.AWS_REGION }}
 
-      # - name: Set up JDK 1.8
-      #   uses: actions/setup-java@v1
-      #   with:
-      #     java-version: 1.8
-
-      # - name: chmod
-      #   run: chmod -R +x ./.github
-
-      # - name: Build and Package Maven
-      #   id: package
-      #   working-directory: ${{ env.applicationfolder }}
-      #   run: $GITHUB_WORKSPACE/.github/scripts/build.sh
-
       - name: Delete client code in s3 bucket
         working-directory: ${{ env.applicationfolder }}
         run: aws s3 rm s3://${{ env.S3BUCKET }}/client --recursive

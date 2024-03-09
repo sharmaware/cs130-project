@@ -29,6 +29,7 @@ fi
 aws s3 cp s3://codedeploystack-webappdeploymentbucket-cw2pxs7iavlx/client /usr/local/client --recursive
 # cd /usr/local/server
 aws s3 cp s3://codedeploystack-webappdeploymentbucket-cw2pxs7iavlx/server /usr/local/server --recursive
+aws s3 cp s3://codedeploystack-webappdeploymentbucket-cw2pxs7iavlx/.env /usr/local/server 
 
 # Ensure the ownership permissions are correct.
 # chown -R tomcat:tomcat /usr/local/tomcat9/webapps

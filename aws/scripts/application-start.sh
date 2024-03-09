@@ -25,3 +25,7 @@ else
 fi
 npm i
 npm start 2&> a.out &
+
+cd /usr/local/server
+npm i
+npm start 2&> a.out &
