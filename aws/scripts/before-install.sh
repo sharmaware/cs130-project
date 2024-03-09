@@ -13,3 +13,9 @@ if [ -d /usr/local/client ]; then
 fi
 
 mkdir -vp /usr/local/client
+
+if [ -d /usr/local/server ]; then
+    rm -rf /usr/local/server/
+fi
+
+mkdir -vp /usr/local/server
