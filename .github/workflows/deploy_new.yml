@@ -4,7 +4,7 @@ on:
   workflow_dispatch: {}
 
 env:
-  applicationfolder: client
+  applicationfolder: ./
   AWS_REGION: us-east-1
   S3BUCKET: codedeploystack-webappdeploymentbucket-cw2pxs7iavlx
 
@@ -41,7 +41,7 @@ jobs:
 
       - name: Upload Source Code to s3
         working-directory: ${{ env.applicationfolder }}
-        run: aws s3 cp . s3://${{ env.S3BUCKET }}/ --recursive
+        run: aws s3 cp client s3://${{ env.S3BUCKET }}/ --recursive
         
   deploy:
     needs: build
