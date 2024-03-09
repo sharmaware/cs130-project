@@ -39,9 +39,17 @@ jobs:
       #   working-directory: ${{ env.applicationfolder }}
       #   run: $GITHUB_WORKSPACE/.github/scripts/build.sh
 
-      - name: Upload Source Code to s3
+      - name: Delete contents of s3 bucket
+        working-directory: ${{ env.applicationfolder }}
+        run: aws s3 rm s3://${{ env.S3BUCKET }}/ --recursive
+
+      - name: Upload Client Source Code to s3
         working-directory: ${{ env.applicationfolder }}
         run: aws s3 cp client s3://${{ env.S3BUCKET }}/ --recursive
+
+      # - name: Upload Server Source Code to s3
+      # working-directory: ${{ env.applicationfolder }}
+      # run: aws s3 cp server s3://${{ env.S3BUCKET }}/server --recursive
         
   deploy:
     needs: build
